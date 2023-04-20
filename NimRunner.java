@@ -7,7 +7,10 @@ public class NimRunner{
     //some kind of dsiplay or printing method (state)
 
     public static boolean runGame(){
-        
+        while(numPieces >0){
+            getXMove();
+            getYMove();
+        }
     }
 
     public static int getXMove(/*state*/){
@@ -19,6 +22,6 @@ public class NimRunner{
     }
 
     public static int minimax(){
-        
+
     }
 }
