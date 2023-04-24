@@ -5,18 +5,19 @@ public class NimRunner{
     //run game returns boolean
     //get x and y move return ints
     //some kind of dsiplay or printing method (state)
-    int numPieces =6; 
+    
     public static boolean runGame(){
-        /*while(numPieces >0){
-            getXMove();
-            getYMove();
+        int numPieces =6;
+        while(numPieces >0){
+            numPieces -= getXMove();
+            numPieces -= getYMove();
             
-        }*/
-        return false;
+        }
+        return false;//true if player x wins, false if player y wins 
     }
 
     public static int getXMove(/*state*/){
-        return 1;
+        return 1;//want to ultimately use best move in here 
     }
 
     public static int getYMove()/*state*/{
@@ -40,18 +41,38 @@ public class NimRunner{
             //then return max of min of al based on whose turn it is 
         }
         //make al 
+        ArrayList<Integer> scoresAL = new ArrayList<>; 
         for(int piecesToTake =1; piecesToTake <= 3; piecesToTake++){
             //calculate score for possible state
             if(piecesToTake <= piecesLeft){
                 int score = minimax(piecesLeft-piecesToTake);
             }
             
-            //add to al 
+            scoresAL.add(score);
             //return max
         }
-        return 1;
+
+        if(myTurn){
+            int max = -2;//
+            for(int i =0; i< scoresAl.size(); i++){
+                if(scoresAL.get(i) > max){
+                    max = scoresAL.get(i);
+                }
+            }
+            return max;
+        }
+        else{
+            int min = 2;
+            for(int i=0; i< scoresAL.size(); i++){
+                if(scoresAL.get(i) < min){
+                    min = scoresAL.get(i);
+                }
+            }
+            return min; 
+        }
     }
 
+    public int bestMove(int pieces, )
     //best move returns int, number of piecies you are going to take
     //params are numpieces and myTurn
     //figure out the next state and then call minimax for the next tae
