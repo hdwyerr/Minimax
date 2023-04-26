@@ -7,7 +7,7 @@ public class NimRunner{
     //some kind of dsiplay or printing method (state)
     
     public static boolean runGame(){
-        int numPieces =6;
+        int numPieces =6;//change for regular nim, al to hold more data
         while(numPieces >0){
             numPieces -= getXMove();
             numPieces -= getYMove();
@@ -18,10 +18,12 @@ public class NimRunner{
 
     public static int getXMove(/*state*/){
         return 1;//want to ultimately use best move in here 
+        //player x is maximizing player, so returning 1 when it is good
     }
 
     public static int getYMove()/*state*/{
         return 1;
+        //player y is minimizing player, so returning -1 is good for them
     }
 
     public static int minimax(int piecesLeft, boolean myTurn){
@@ -72,11 +74,55 @@ public class NimRunner{
         }
     }
 
-    public int bestMove(int pieces, )
+    
     //best move returns int, number of piecies you are going to take
     //params are numpieces and myTurn
     //figure out the next state and then call minimax for the next tae
     //if positive, break 
     //otherwise return the move you should make, number of pieces you should take 
     //method is not recursive 
+    public int bestMove(int numPieces, boolean myTurn){
+        //for simple nim you can only take 1, 2, or 3 pieces
+        //first for player x, who would want to maximize
+        if(myTurn){
+            //if you were to take 1 piece
+            if(minimax(numPieces-1, true) ==1){
+                return 1;
+            }
+            //if you were to take 2 pieces
+            else if(minimax(numPieces-2, true) == 1){
+                return 2;
+            }
+            else if(minimax(numPieces-3, true) == 1){
+                return 3;
+            }
+        }
+        else{//player y wants to minimize
+            //need to reverse boolean and return value for numPieces because false and -1 represent the best moves for player y
+            if(minimax(numPieces-1, false) == -1){
+                return 1;
+            }
+            else if(minimax(numPieces-2, false) == -1){
+                return 2;
+            }
+            else if(minimax(numPieces-3, false) == -1){
+                return 3;
+            }
+            return 0;//return to avoid error
+        }
+
+    }
+
+    //refactoring for regular nim
+    //state is no longer an integer bc there are multiple piles- al of numbers that represetn numPieces in each pile
+    //use paralell al to determine num pieces since it will only be from one pile [0,0,3,0] to get move, change return val to al
+    //any for loop that iterates over possible moves , double al
+
+    //refactoring pseudocode
+    //set up moves al of al of ints
+    //for loop to interate through indexes within state, represetns each pile
+        //inner for loop through value at each index (number of possible pieces to be taken from particular pile)
+            //make a new array list of ints (represetns 1 move)
+            //at same index you are at in state (pile), in the small al add numPieces you could take from that pile 
+            //add small al to big al 
 }
