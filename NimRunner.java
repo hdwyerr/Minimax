@@ -9,21 +9,21 @@ public class NimRunner{
     public static boolean runGame(){
         int numPieces =6;//change for regular nim, al to hold more data
         while(numPieces >0){
-            numPieces -= getXMove();
-            numPieces -= getYMove();
-            
+            numPieces -= getXMove(numPieces);
+            numPieces -= getYMove(numPieces);
         }
-        return false;//true if player x wins, false if player y wins 
+        //true if player x wins, false if player y wins 
     }
 
-    public static int getXMove(/*state*/){
-        return 1;//want to ultimately use best move in here 
+    public static int getXMove(int numPieces){
+        //want to ultimately use best move in here 
         //player x is maximizing player, so returning 1 when it is good
+        return bestMove(numPieces, true);
     }
 
-    public static int getYMove()/*state*/{
-        return 1;
+    public static int getYMove(int numPieces){
         //player y is minimizing player, so returning -1 is good for them
+        return bestMove(numPieces, false);
     }
 
     public static int minimax(int piecesLeft, boolean myTurn){
