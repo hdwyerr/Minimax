@@ -12,14 +12,12 @@ public class NimRunner{
                 return false;
             }
             numPieces -= getXMove(numPieces);
-            System.out.println("numPieces is after x" + numPieces);
             if(numPieces ==1){//checking this here so i know whose turn it is and who won/lost
                 //1 piece left and y's turn, so x wins
                 System.out.println("X won");
                 return true;
             }
             numPieces -= getYMove(numPieces);
-            System.out.println("numPieces is after y" + numPieces);
         }
         //true if player x wins, false if player y wins 
         return true;//backup in case loop fails
