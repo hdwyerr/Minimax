@@ -3,36 +3,29 @@ public class NimRunner{
     public static void main(String[] args){
 
     }
-    //run game returns boolean
-    //get x and y move return ints
-    //some kind of dsiplay or printing method (state)
-    
     public static boolean runGame(int numPieces){
-        //int numPieces =6;//change for regular nim, al to hold more data
+        //change for regular nim, al to hold more data
         while(numPieces >0){
             if(numPieces ==1){
-                //1 piece left and x's turn, so they lost
+                //1 piece left and x's turn, so y wins
                 System.out.println("Y won");
                 return false;
             }
             numPieces -= getXMove(numPieces);
             System.out.println("numPieces is after x" + numPieces);
-            if(numPieces ==1){
+            if(numPieces ==1){//checking this here so i know whose turn it is and who won/lost
                 //1 piece left and y's turn, so x wins
                 System.out.println("X won");
                 return true;
             }
-            System.out.println("y is taking this amt of pieces this turn:" + getYMove(numPieces));
             numPieces -= getYMove(numPieces);
             System.out.println("numPieces is after y" + numPieces);
         }
         //true if player x wins, false if player y wins 
-        System.out.println("at end of runGame");
-        return true;
+        return true;//backup in case loop fails
     }
 
     public static int getXMove(int numPieces){
-        //want to ultimately use best move in here 
         //player x is maximizing player, so returning 1 when it is good
         return bestMove(numPieces, true);
     }
@@ -43,23 +36,17 @@ public class NimRunner{
     }
 
     public static int minimax(int piecesLeft, boolean myTurn){
+        //al to hold the scores of each state later on
         ArrayList<Integer> scoresAL = new ArrayList<>();
         //check base case
         if(piecesLeft ==0){
             if(myTurn ==true){
-                return 1;
+                return 1;//maximizing for player x
             }
             return -1;
         }
-        //else, loop through 3 other options
+        //else, loop through 3 other options, different states of what could happen
         else{
-            //in for loop, need to return either min or max of 3 scores
-            //make an array list
-            //loop thru 3 possilbe states options and call minimax for each state, you will get 1 or -1
-            //add each score to al 
-            //then return max of min of al based on whose turn it is 
-            //make al 
-            //ArrayList<Integer> scoresAL = new ArrayList<>;
             for(int piecesToTake =1; piecesToTake <= 3; piecesToTake++){
                 //calculate score for possible state
                 if(piecesToTake <= piecesLeft){
@@ -69,7 +56,8 @@ public class NimRunner{
             }
         }
         if(myTurn){
-            int max = -2;//
+            //finding max for player x
+            int max = -2;
             for(int i =0; i< scoresAL.size(); i++){
                 if(scoresAL.get(i) > max){
                     max = scoresAL.get(i);
@@ -78,6 +66,7 @@ public class NimRunner{
             return max;
         }
         else{
+            //finding min for player y
             int min = 2;
             for(int i=0; i< scoresAL.size(); i++){
                 if(scoresAL.get(i) < min){
@@ -89,12 +78,7 @@ public class NimRunner{
     }
 
     
-    //best move returns int, number of piecies you are going to take
-    //params are numpieces and myTurn
-    //figure out the next state and then call minimax for the next tae
-    //if positive, break 
-    //otherwise return the move you should make, number of pieces you should take 
-    //method is not recursive 
+    
     public static int bestMove(int numPieces, boolean myTurn){
         //for simple nim you can only take 1, 2, or 3 pieces
         //first for player x, who would want to maximize
@@ -123,13 +107,11 @@ public class NimRunner{
                 return 3;
             }
             else{
-                System.out.println("Sorry! There are no moves for you to take that guarantee a victory");
-                //return a random number of pieces to take
+                System.out.println("Sorry! There are no moves for you to take that guarantee a victory");//sometimes the algorithim just will not work
                 return 1;
             }
-            //return 0;//return to avoid error
         }
-       return 0;
+       return 0;//return to avoid error
 
     }
 
