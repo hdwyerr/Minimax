@@ -1,4 +1,6 @@
 # Introduction
 ## Background and Motivation
+Nim is a game of strategy. It is a contest between two players where there is a fixed number of piles with fixed numbers of pieces in them. The players alternate selecting a certain number of pieces from a pile, and the goal of the game is to avoid taking the last piece. Minimax is a strategy that can be used to predict the outcome of the game from any given state and whether or not it will be favorable to a given player. The algorithim distinguishes between favorable and unfavorable by assigning each player a score of 1 or -1. If you are the maximizing player, you want to be in states with the outcome of 1, because those are favorable states and you will win the game. In order to determine the favorability of a state, recursion needs to be utilized. You could be at a state where there are 5 states left until the end of the game, and since you want to know the outcome at the end of the game, you need to traverse all 5 states until the end is reached. By recursively calling minimax, you are applying the same algorithim to each state, which allows you to get an accurate end result. 
+
 ## Usage
 ## Future Directions 
