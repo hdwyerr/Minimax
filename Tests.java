@@ -21,6 +21,10 @@ public class Tests{
         System.out.println(NimRunner.bestMove(3, true) == 2);
         System.out.println(NimRunner.bestMove(4, true) == 3);
         System.out.println(NimRunner.bestMove(6, true));
-        System.out.println(NimRunner.bestMove(7, true));
+        System.out.println(NimRunner.bestMove(5, false));
+
+        System.out.println(NimRunner.runGame(4));
+        System.out.println(NimRunner.runGame(6));
+        System.out.println(NimRunner.runGame(5));
     }
 }
