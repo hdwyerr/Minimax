@@ -1,5 +1,5 @@
 
-1. 
+1. One time and space efficiency limitation with my code is the algorithm I implement in minimax. I decided to  use an Array List to represent the scores because that is what makes the most sense to me conceptually, but it is not the most efficient use of time or space. For example, if the game was being played with 100 pieces, the score for every possible state would have to be added to the array list. The list would have more elements and therefore take up more space, but there would be a larger effect on the efficiency of the program, because the code would have to continuously be resizing the array list in order to add the scores of each state, which would take up run time. 
 
 2. No, my bot will not win every possible game of SimpleNim. This is because FINISH. For example, if there are 5 pieces left and it is your turn, taking any number of pieces (1, 2, or 3) would result in a state where your opponent would be able to win no matter what. The minimax algorithm finds the best score for both players, and since bestMove considers the next state (which is when it is the other player's turn), there will be times when the bot is unable to produce the best result for you. The algorithm still produces the best strategy for the other player and allows them to win, but you will probably be sad that you didn't win.
 
