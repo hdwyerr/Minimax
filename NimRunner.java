@@ -7,8 +7,8 @@ public class NimRunner{
     //get x and y move return ints
     //some kind of dsiplay or printing method (state)
     
-    public static boolean runGame(){
-        int numPieces =6;//change for regular nim, al to hold more data
+    public static boolean runGame(int numPieces){
+        //int numPieces =6;//change for regular nim, al to hold more data
         while(numPieces >0){
             if(numPieces ==1){
                 //1 piece left and x's turn, so they lost
@@ -112,7 +112,7 @@ public class NimRunner{
             }
         }
         else{//player y wants to minimize
-            //need to reverse boolean and return value for numPieces because false and -1 represent the best moves for player y
+            //-1 is a bad outcome for x, and since the conditions represent the next state, that means it is good for player y
             if(minimax(numPieces-1, true) == -1){
                 return 1;
             }
@@ -123,12 +123,13 @@ public class NimRunner{
                 return 3;
             }
             else{
-                return 0;
+                System.out.println("Sorry! There are no moves for you to take that guarantee a victory");
+                //return a random number of pieces to take
+                return 1;
             }
             //return 0;//return to avoid error
         }
-        System.out.println("sorry you are going to lose  no matter how many pieces you take");
-        return 0;
+       return 0;
 
     }
 
